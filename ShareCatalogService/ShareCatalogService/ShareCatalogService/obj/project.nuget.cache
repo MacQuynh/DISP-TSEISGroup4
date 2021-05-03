@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "65tkbux+7711IHETvzKKfrUfqMiB69lp+zW11xHE1a3mffDpzhTRio05V6otvt70RlNq3z7LrXlu3rhZ1vRV0A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Mads\\source\\repos\\Disp\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Mads\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512"
+  ],
+  "logs": []
+}
