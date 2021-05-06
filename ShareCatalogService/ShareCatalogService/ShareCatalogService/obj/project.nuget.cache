@@ -1,10 +1,18 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "DjCxCxup0l68FKZu92Rw8qL4bJD5i5YXB2eDXUAVk5twi3NYrYqkvDlFaQy8v4F6KBSJldZWe28rgJRYf6uQDA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Quynh Trang Mac\\source\\repos\\DISP\\TSEIS\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Quynh Trang Mac\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512"
+=======
+  "dgSpecHash": "S9EvofyNiRbgmzULeYKO0JxTCsgq/99uFOqjlXHMJOrR2E1/47yyb3yjMghTftbStr+Yb3WfsJHM0UpUvPMS+A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\randi\\source\\repos\\DISP_DistribueredeSystemer\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\randi\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512"
+>>>>>>> bad00f589a5b81bfdb2a12216a1b1287b74edb94
   ],
   "logs": []
 }
