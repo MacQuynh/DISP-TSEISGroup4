@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mads\\source\\repos\\Disp\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj": {}
+    "C:\\Users\\randi\\source\\repos\\DISP_DistribueredeSystemer\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mads\\source\\repos\\Disp\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj": {
+    "C:\\Users\\randi\\source\\repos\\DISP_DistribueredeSystemer\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mads\\source\\repos\\Disp\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
+        "projectUniqueName": "C:\\Users\\randi\\source\\repos\\DISP_DistribueredeSystemer\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
         "projectName": "ShareCatalogService",
-        "projectPath": "C:\\Users\\Mads\\source\\repos\\Disp\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
-        "packagesPath": "C:\\Users\\Mads\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mads\\source\\repos\\Disp\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\obj\\",
+        "projectPath": "C:\\Users\\randi\\source\\repos\\DISP_DistribueredeSystemer\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
+        "packagesPath": "C:\\Users\\randi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\randi\\source\\repos\\DISP_DistribueredeSystemer\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Mads\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\randi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
