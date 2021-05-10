@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TransactionService.Clients;
 using TransactionService.Controllers.Requests;
 using TransactionService.Data;
 using TransactionService.Model;
@@ -16,13 +17,15 @@ namespace TransactionService.Controllers
     public class TransactionsController : ControllerBase
     {
         private readonly TransactionContext _context;
+        private readonly IUserCatalogService _userCatalogClient;
         private IMapper _mapper;
 
-        public TransactionsController(TransactionContext context)
+        public TransactionsController(TransactionContext context, IUserCatalogService userCatalogClient)
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<TransactionRequest, Transaction>());
             _mapper = new Mapper(config);
             _context = context;
+            _userCatalogClient = userCatalogClient;
         }
 
         // GET: api/Transactions
@@ -44,6 +47,8 @@ namespace TransactionService.Controllers
             //send request to User Catalog to update buyer and seller
             //--Buyer: update ownerships and capital
             //--Seller: update ownerships and capital
+
+            var response = _userCatalogClient.SendUpdateForBuyerToUSerCatalog(transaction.BuyerId);
 
             // send request to Share Catalog to update share
             //--Update owner and for sale
