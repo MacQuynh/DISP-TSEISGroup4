@@ -2,20 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace UserCatalogService.Model
 {
     public class UserCatalog
     {
-        public float Capital { get; set; }
+        public double Capital { get; set; }
         public string Name { get; set; }
         public string Id { get; set; }
-        public List<Stock> StockList { get; set; }
+        public List<Share> Shares { get; set; }
     }
 
-    public class Stock
+    public class Share
     {
-        public string stockName { get; set; }
         public string Id { get; set; }
+        public string UserCatalogId { get; set; }
+        public UserCatalog UserCatalog { get; set; }
     }
+
 }

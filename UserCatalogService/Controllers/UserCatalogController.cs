@@ -20,8 +20,8 @@ namespace UserCatalogService.Controllers
             _context = context;
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<UserCatalog>> GetValidateBuyer(string id)
+        [HttpGet("validatebuyer/{id}")]
+        public async Task<ActionResult<UserCatalog>> GetValidateBuyer([FromRoute]string id)
         {
             var buyer = await _context.UserCatalog.FindAsync(id);
 
@@ -36,7 +36,7 @@ namespace UserCatalogService.Controllers
             //Should also handle validation of kapital. 
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("validateseller/{id}")]
         public async Task<ActionResult<UserCatalog>> GetValidateSeller(string id)
         {
             var seller = await _context.UserCatalog.FindAsync(id);
@@ -52,7 +52,7 @@ namespace UserCatalogService.Controllers
             //Should also handle validation of the ownership of the stock. 
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("updateUser/{id}")]
         public async Task<IActionResult> PutUpdateUser(string id, UserCatalog user)
         {
             if (id != user.Id)
@@ -60,13 +60,16 @@ namespace UserCatalogService.Controllers
                 return BadRequest();
             }
 
+           
+
+            /*
             _context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
 
             try
             {
                 await _context.SaveChangesAsync();
             }
-            catch
+            catch 
             {
                 if (!UserExist(id))
                 {
@@ -75,7 +78,7 @@ namespace UserCatalogService.Controllers
                 else { throw; }
             }
 
-            return NoContent();
+            return NoContent();*/
         }
 
 
