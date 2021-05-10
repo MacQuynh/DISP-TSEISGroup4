@@ -16,7 +16,32 @@ namespace UserCatalogService.Data
         }
 
         public DbSet<Model.UserCatalog> UserCatalog { get; set; }
-        public DbSet<Model.Stock> Stock { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelbBuilder)
+        {
+            //modelbBuilder.Entity<Share>().HasOne<UserCatalog>(q => q.UserCatalog)
+            //    .WithMany(w => w.Shares)
+            //    .HasForeignKey(y => y.UserCatalogId);
+
+             modelbBuilder.Entity<UserCatalog>().HasMany(
+                 u => u.Shares
+                 ).WithOne(s => s.UserCatalog);
+            modelbBuilder.Entity<UserCatalog>().HasData(
+               new UserCatalog
+               {
+                   Capital = 100.10,
+                   Name = "Ida Hansen",
+                   Id = "20"
+               }
+               );
+
+            modelbBuilder.Entity<Share>().HasData(
+                new Share { Id = "AAPL", UserCatalogId = "20" }
+                );
+
+           
+
+
+        }
     }
 }
