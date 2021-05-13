@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
@@ -17,15 +18,17 @@ namespace TransactionService.Controllers
     public class TransactionsController : ControllerBase
     {
         private readonly TransactionContext _context;
-        private readonly IUserCatalogService _userCatalogClient;
+        private readonly UserCatalogClient _userCatalogClient;
+        private readonly ShareCatalogClient _shareCatalogClient;
         private IMapper _mapper;
 
-        public TransactionsController(TransactionContext context, IUserCatalogService userCatalogClient)
+        public TransactionsController(TransactionContext context, UserCatalogClient userCatalogClient, ShareCatalogClient shareCatalogClient)
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<TransactionRequest, Transaction>());
             _mapper = new Mapper(config);
             _context = context;
             _userCatalogClient = userCatalogClient;
+            _shareCatalogClient = shareCatalogClient;
         }
 
         // GET: api/Transactions
@@ -43,15 +46,36 @@ namespace TransactionService.Controllers
             transaction.Id = newId;
             _context.Transactions.Add(transaction);
             await _context.SaveChangesAsync();
+            
+            var shareUpdateRequest = new UpdateShareCatalogRequest
+            {
+                ShareId = transaction.ShareId,
+                NewOwnerId = transaction.BuyerId
+            };
+            var buyerUpdateRequest = new UpdateUserCatalogRequest
+            {
+                UserId = transaction.BuyerId, ShareId = transaction.ShareId, SharePrice = transaction.Price
+            };
+            var sellerUpdateRequest = new UpdateUserCatalogRequest
+            {
+                UserId = transaction.SellerId, ShareId = transaction.ShareId, SharePrice = transaction.Price
+            };
 
-            //send request to User Catalog to update buyer and seller
-            //--Buyer: update ownerships and capital
-            //--Seller: update ownerships and capital
-
-            var response = _userCatalogClient.SendUpdateForBuyerToUSerCatalog(transaction.BuyerId);
-
-            // send request to Share Catalog to update share
-            //--Update owner and for sale
+            try
+            {
+                //send request to User Catalog to update buyer and seller
+                //--Buyer: update ownerships and capital
+                //--Seller: update ownerships and capital
+                await _userCatalogClient.SendUpdateForBuyerToUserCatalog(buyerUpdateRequest);
+               await _userCatalogClient.SendUpdateForSellerToUserCatalog(sellerUpdateRequest);
+               // send request to Share Catalog to update share
+               //--Update owner and for sale
+                await _shareCatalogClient.SendUpdateToUserCatalog(shareUpdateRequest);
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine("Exception caught: ", e);
+            }
 
             return Ok(transaction);
         }
