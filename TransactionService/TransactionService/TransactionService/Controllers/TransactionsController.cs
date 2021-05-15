@@ -44,6 +44,7 @@ namespace TransactionService.Controllers
             var newId = Guid.NewGuid().ToString();
             var transaction = _mapper.Map<Transaction>(transactionRequest);
             transaction.Id = newId;
+            transaction.TimeOfTransaction = DateTime.Now;
             _context.Transactions.Add(transaction);
             await _context.SaveChangesAsync();
             
