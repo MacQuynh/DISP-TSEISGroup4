@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,23 +24,29 @@ namespace UserCatalogService.Controllers
         [HttpGet("validatebuyer/{id}")]
         public async Task<ActionResult<UserCatalog>> GetValidateBuyer([FromRoute]string id)
         {
-            var buyer = await _context.UserCatalog.FindAsync(id);
+            var buyer = await Task.FromResult(_context.UserCatalog
+              .Where(i => i.Id==id)
+              .Include(s => s.Shares)
+              .FirstOrDefault());
 
-            if (buyer == null)
+            if ( buyer == null)
             {
                 return NotFound();
             }
 
             return buyer;
 
-
             //Should also handle validation of kapital. 
+
         }
 
         [HttpGet("validateseller/{id}")]
         public async Task<ActionResult<UserCatalog>> GetValidateSeller(string id)
         {
-            var seller = await _context.UserCatalog.FindAsync(id);
+            var seller = await Task.FromResult(_context.UserCatalog
+              .Where(i => i.Id == id)
+              .Include(s => s.Shares)
+              .FirstOrDefault());
 
             if (seller == null)
             {
@@ -52,35 +59,62 @@ namespace UserCatalogService.Controllers
             //Should also handle validation of the ownership of the stock. 
         }
 
-        [HttpPut("updateUser/{id}")]
-        public async Task<IActionResult> PutUpdateUser(string id, UserCatalog user)
+        [HttpPut("updateBuyer/{id}")]
+        public async Task<IActionResult> PutBuyer(string id, UserCatalog buyer)
         {
-            if (id != user.Id)
+
+            if (id != buyer.Id)
             {
                 return BadRequest();
             }
 
-           
+            var buyerToUpdate = await _context.UserCatalog.FirstOrDefaultAsync(i => i.Id == id);
+            if(await TryUpdateModelAsync<UserCatalog>(buyerToUpdate, "", c => c.Capital)) // Just add more here if needed.
 
-            /*
-            _context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Entry(buyer).State = EntityState.Modified;
 
             try
             {
                 await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            catch 
+            catch (DbUpdateConcurrencyException)
             {
                 if (!UserExist(id))
                 {
                     return NotFound();
                 }
-                else { throw; }
             }
-
-            return NoContent();*/
+            return (IActionResult)buyerToUpdate;
         }
 
+        [HttpPut("updateSeller/{id}")]
+        public async Task<IActionResult> PutUpdateSeller(string id, UserCatalog seller) 
+        {
+            if (id != seller.Id)
+            {
+                return BadRequest();
+            }
+
+            var sellerToUpdate = await _context.UserCatalog.FirstOrDefaultAsync(i => i.Id == id);
+            if (await TryUpdateModelAsync<UserCatalog>(sellerToUpdate, "", c => c.Capital)) // Just add more here if needed.
+
+                _context.Entry(seller).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExist(id))
+                {
+                    return NotFound();
+                }
+            }
+            return (IActionResult)sellerToUpdate;
+        }
 
         private bool UserExist(string id)
         {

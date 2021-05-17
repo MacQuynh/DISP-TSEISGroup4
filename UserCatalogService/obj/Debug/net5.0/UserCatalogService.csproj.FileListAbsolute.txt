@@ -59,3 +59,6 @@ C:\Users\Quynh Trang Mac\source\repos\DISP\TSEIS\DISP-TSEISGroup4\UserCatalogSer
 C:\Users\Quynh Trang Mac\source\repos\DISP\TSEIS\DISP-TSEISGroup4\UserCatalogService\obj\Debug\net5.0\ref\UserCatalogService.dll
 C:\Users\Quynh Trang Mac\source\repos\DISP\TSEIS\DISP-TSEISGroup4\UserCatalogService\obj\Debug\net5.0\UserCatalogService.pdb
 C:\Users\Quynh Trang Mac\source\repos\DISP\TSEIS\DISP-TSEISGroup4\UserCatalogService\obj\Debug\net5.0\UserCatalogService.genruntimeconfig.cache
+C:\Users\Quynh Trang Mac\source\repos\DISP\TSEIS\DISP-TSEISGroup4\UserCatalogService\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Quynh Trang Mac\source\repos\DISP\TSEIS\DISP-TSEISGroup4\UserCatalogService\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Quynh Trang Mac\source\repos\DISP\TSEIS\DISP-TSEISGroup4\UserCatalogService\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

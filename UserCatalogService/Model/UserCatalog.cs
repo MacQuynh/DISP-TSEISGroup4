@@ -19,6 +19,7 @@ namespace UserCatalogService.Model
     {
         public string Id { get; set; }
         public string UserCatalogId { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public UserCatalog UserCatalog { get; set; }
     }
 
