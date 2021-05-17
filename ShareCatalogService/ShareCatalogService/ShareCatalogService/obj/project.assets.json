@@ -5848,41 +5848,24 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\Quynh Trang Mac\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
-=======
-    "C:\\Users\\randi\\.nuget\\packages\\": {}
->>>>>>> bad00f589a5b81bfdb2a12216a1b1287b74edb94
+    "C:\\Users\\Mads\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\Quynh Trang Mac\\source\\repos\\DISP\\TSEIS\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
+      "projectUniqueName": "C:\\Users\\Mads\\source\\repos\\Disp\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
       "projectName": "ShareCatalogService",
-      "projectPath": "C:\\Users\\Quynh Trang Mac\\source\\repos\\DISP\\TSEIS\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
-      "packagesPath": "C:\\Users\\Quynh Trang Mac\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Quynh Trang Mac\\source\\repos\\DISP\\TSEIS\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\obj\\",
+      "projectPath": "C:\\Users\\Mads\\source\\repos\\Disp\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
+      "packagesPath": "C:\\Users\\Mads\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Mads\\source\\repos\\Disp\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Quynh Trang Mac\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
-=======
-      "projectUniqueName": "C:\\Users\\randi\\source\\repos\\DISP_DistribueredeSystemer\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
-      "projectName": "ShareCatalogService",
-      "projectPath": "C:\\Users\\randi\\source\\repos\\DISP_DistribueredeSystemer\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
-      "packagesPath": "C:\\Users\\randi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\randi\\source\\repos\\DISP_DistribueredeSystemer\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\randi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mads\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> bad00f589a5b81bfdb2a12216a1b1287b74edb94
       ],
       "originalTargetFrameworks": [
         "net5.0"
