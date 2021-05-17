@@ -10,6 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using ShareCatalogService.Clients;
+using ShareCatalogService.Data;
 
 namespace ShareCatalogService
 {
@@ -26,6 +29,15 @@ namespace ShareCatalogService
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllers();
+
+			services.AddDbContext<ShareCatalogContext>(option =>
+				option.UseSqlServer(Configuration.GetConnectionString("ShareCatalogContext")));
+
+			//services.AddHttpClient<TobinTaxingClient>(client =>
+			//{
+			//	client.BaseAddress = new Uri("https://localhost:5001/api/TobinTaxing");
+			//	client.DefaultRequestHeaders.Add("Accept", "application/json");
+			//});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
