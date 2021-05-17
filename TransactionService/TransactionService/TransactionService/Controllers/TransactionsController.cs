@@ -39,7 +39,7 @@ namespace TransactionService.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Transaction>> BuyOfShare([FromBody] TransactionRequest transactionRequest)
+        public async Task<ActionResult<Transaction>> TransactionOfShare([FromBody] TransactionRequest transactionRequest)
         {
             var newId = Guid.NewGuid().ToString();
             var transaction = _mapper.Map<Transaction>(transactionRequest);
@@ -71,7 +71,7 @@ namespace TransactionService.Controllers
                await _userCatalogClient.SendUpdateForSellerToUserCatalog(sellerUpdateRequest);
                // send request to Share Catalog to update share
                //--Update owner and for sale
-                await _shareCatalogClient.SendUpdateToUserCatalog(shareUpdateRequest);
+                await _shareCatalogClient.SendUpdateOwnerToShareCatalog(shareUpdateRequest);
             }
             catch (HttpRequestException e)
             {
