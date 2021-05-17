@@ -9,13 +9,14 @@ namespace UserCatalogService.Data
 {
     public class UserCatalogContext : DbContext
     {
+      
         public UserCatalogContext (DbContextOptions<UserCatalogContext> options) 
             : base(options)
         {
 
         }
 
-        public DbSet<Model.UserCatalog> UserCatalog { get; set; }
+        public DbSet<UserCatalog> UserCatalog { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelbBuilder)
         {
@@ -23,9 +24,10 @@ namespace UserCatalogService.Data
             //    .WithMany(w => w.Shares)
             //    .HasForeignKey(y => y.UserCatalogId);
 
-             modelbBuilder.Entity<UserCatalog>().HasMany(
+            modelbBuilder.Entity<UserCatalog>().HasMany(
                  u => u.Shares
                  ).WithOne(s => s.UserCatalog);
+
             modelbBuilder.Entity<UserCatalog>().HasData(
                new UserCatalog
                {
@@ -39,9 +41,7 @@ namespace UserCatalogService.Data
                 new Share { Id = "AAPL", UserCatalogId = "20" }
                 );
 
-           
-
-
         }
+
     }
 }

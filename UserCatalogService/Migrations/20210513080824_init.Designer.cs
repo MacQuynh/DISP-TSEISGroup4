@@ -9,7 +9,7 @@ using UserCatalogService.Data;
 namespace UserCatalogService.Migrations
 {
     [DbContext(typeof(UserCatalogContext))]
-    [Migration("20210510121712_init")]
+    [Migration("20210513080824_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
