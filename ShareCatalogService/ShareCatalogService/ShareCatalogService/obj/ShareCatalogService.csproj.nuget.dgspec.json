@@ -1,54 +1,35 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "C:\\Users\\Quynh Trang Mac\\source\\repos\\DISP\\TSEIS\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj": {}
+    "C:\\Users\\Mads\\source\\repos\\Disp\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Quynh Trang Mac\\source\\repos\\DISP\\TSEIS\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj": {
+    "C:\\Users\\Mads\\source\\repos\\Disp\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Quynh Trang Mac\\source\\repos\\DISP\\TSEIS\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
+        "projectUniqueName": "C:\\Users\\Mads\\source\\repos\\Disp\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
         "projectName": "ShareCatalogService",
-        "projectPath": "C:\\Users\\Quynh Trang Mac\\source\\repos\\DISP\\TSEIS\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
-        "packagesPath": "C:\\Users\\Quynh Trang Mac\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Quynh Trang Mac\\source\\repos\\DISP\\TSEIS\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\obj\\",
+        "projectPath": "C:\\Users\\Mads\\source\\repos\\Disp\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
+        "packagesPath": "C:\\Users\\Mads\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mads\\source\\repos\\Disp\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Quynh Trang Mac\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
-=======
-    "C:\\Users\\randi\\source\\repos\\DISP_DistribueredeSystemer\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\randi\\source\\repos\\DISP_DistribueredeSystemer\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\randi\\source\\repos\\DISP_DistribueredeSystemer\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
-        "projectName": "ShareCatalogService",
-        "projectPath": "C:\\Users\\randi\\source\\repos\\DISP_DistribueredeSystemer\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService.csproj",
-        "packagesPath": "C:\\Users\\randi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\randi\\source\\repos\\DISP_DistribueredeSystemer\\DISP-TSEISGroup4\\ShareCatalogService\\ShareCatalogService\\ShareCatalogService\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\randi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mads\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> bad00f589a5b81bfdb2a12216a1b1287b74edb94
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
+          "net5.0": {
+            "targetAlias": "net5",
             "projectReferences": {}
           }
         },
@@ -59,9 +40,29 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net5.0": {
+          "targetAlias": "net5",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.10.9, )"
