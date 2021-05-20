@@ -9,6 +9,11 @@ namespace TobinTaxingService.Controllers.Responses
 {
 	public class TaxResponse
 	{
+		public TaxResponse()
+		{
+			
+		}
+
 		public string ShareId {get; set;}
 		public double TaxValue {get; set;}
 	}
