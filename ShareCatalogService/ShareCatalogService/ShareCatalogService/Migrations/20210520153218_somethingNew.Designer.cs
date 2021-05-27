@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShareCatalogService.Data;
 
 namespace ShareCatalogService.Migrations
 {
     [DbContext(typeof(ShareCatalogContext))]
-    partial class ShareCatalogContextModelSnapshot : ModelSnapshot
+    [Migration("20210520153218_somethingNew")]
+    partial class somethingNew
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,42 +52,6 @@ namespace ShareCatalogService.Migrations
                             Name = "AP. Møller",
                             Tax = 0f,
                             UserId = "Mads Mikkelsen",
-                            Value = 1000f
-                        },
-                        new
-                        {
-                            Id = "123457",
-                            ForSale = true,
-                            Name = "Carlsberg",
-                            Tax = 1f,
-                            UserId = "Mads Mikkelsen",
-                            Value = 100f
-                        },
-                        new
-                        {
-                            Id = "123357",
-                            ForSale = true,
-                            Name = "AP. Møller",
-                            Tax = 10f,
-                            UserId = "Randi",
-                            Value = 1000f
-                        },
-                        new
-                        {
-                            Id = "122257",
-                            ForSale = true,
-                            Name = "AP. Møller",
-                            Tax = 10f,
-                            UserId = "Trang",
-                            Value = 1000f
-                        },
-                        new
-                        {
-                            Id = "123227",
-                            ForSale = false,
-                            Name = "Carlsberg",
-                            Tax = 0f,
-                            UserId = "Trang",
                             Value = 100f
                         });
                 });

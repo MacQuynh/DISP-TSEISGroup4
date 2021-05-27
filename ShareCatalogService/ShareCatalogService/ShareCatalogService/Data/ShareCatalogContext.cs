@@ -7,7 +7,7 @@ using ShareCatalogService.Models;
 
 namespace ShareCatalogService.Data
 {
-	public class ShareCatalogContext : DbContext
+	public class ShareCatalogContext: DbContext
 	{
 		public ShareCatalogContext(DbContextOptions<ShareCatalogContext> options)
 			: base(options)
@@ -19,16 +19,23 @@ namespace ShareCatalogService.Data
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+
 			modelBuilder.Entity<ShareCatalog>().HasData(
 				new ShareCatalog
 				{
-					Id = "123456",
-					Name = "AP. Møller",
-					userId = "Mads Mikkelsen", 
-					Value = 100, 
-					ForSale = false,
-					Tax = 1,
-				});
+					Id = "123456", Name = "AP. Møller", UserId = "Mads Mikkelsen", Value = 1000, ForSale = false, Tax = 0
+				},
+				new ShareCatalog
+				{
+					Id = "123457", Name = "Carlsberg", UserId = "Mads Mikkelsen", Value = 100, ForSale = true, Tax = 1
+				},
+				new ShareCatalog
+					{Id = "123357", Name = "AP. Møller", UserId = "Randi", Value = 1000, ForSale = true, Tax = 10},
+				new ShareCatalog
+					{Id = "122257", Name = "AP. Møller", UserId = "Trang", Value = 1000, ForSale = true, Tax = 10},
+				new ShareCatalog
+					{Id = "123227", Name = "Carlsberg", UserId = "Trang", Value = 100, ForSale = false, Tax = 0}
+			);
 		}
 	}
 }

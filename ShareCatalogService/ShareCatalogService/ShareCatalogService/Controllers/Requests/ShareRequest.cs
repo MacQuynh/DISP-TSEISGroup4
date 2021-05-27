@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace ShareCatalogService.Controllers.Requests
 {
-	public class TobinTaxingRequest
+	public class ShareRequest
 	{
 		public string ShareId {get; set;}
 
-		public float ShareValue {get; set;}
+		public string UserId {get; set;}
 	}
 }

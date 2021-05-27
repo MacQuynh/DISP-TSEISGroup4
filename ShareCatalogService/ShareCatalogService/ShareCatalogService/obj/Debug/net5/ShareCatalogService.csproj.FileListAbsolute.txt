@@ -55,3 +55,4 @@ C:\Users\Mads\source\repos\Disp\DISP-TSEISGroup4\ShareCatalogService\ShareCatalo
 C:\Users\Mads\source\repos\Disp\DISP-TSEISGroup4\ShareCatalogService\ShareCatalogService\ShareCatalogService\obj\Debug\net5\ref\ShareCatalogService.dll
 C:\Users\Mads\source\repos\Disp\DISP-TSEISGroup4\ShareCatalogService\ShareCatalogService\ShareCatalogService\obj\Debug\net5\ShareCatalogService.pdb
 C:\Users\Mads\source\repos\Disp\DISP-TSEISGroup4\ShareCatalogService\ShareCatalogService\ShareCatalogService\obj\Debug\net5\ShareCatalogService.genruntimeconfig.cache
+C:\Users\Mads\source\repos\Disp\DISP-TSEISGroup4\ShareCatalogService\ShareCatalogService\ShareCatalogService\bin\Debug\net5\AutoMapper.dll

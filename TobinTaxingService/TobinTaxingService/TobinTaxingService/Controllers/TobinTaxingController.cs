@@ -24,8 +24,8 @@ namespace TobinTaxingService.Controllers
 			
 		//}
 
-		[HttpGet]
-		public ActionResult<TaxResponse> GetTax([FromBody] TaxRequest request)
+		[HttpPost("calculateTax")]
+		public ActionResult<TaxResponse> CalculateTax([FromBody] TaxRequest request)
 		{
 
 			TaxResponse taxResponse = new TaxResponse

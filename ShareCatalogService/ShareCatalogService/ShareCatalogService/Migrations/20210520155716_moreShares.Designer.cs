@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShareCatalogService.Data;
 
 namespace ShareCatalogService.Migrations
 {
     [DbContext(typeof(ShareCatalogContext))]
-    partial class ShareCatalogContextModelSnapshot : ModelSnapshot
+    [Migration("20210520155716_moreShares")]
+    partial class moreShares
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

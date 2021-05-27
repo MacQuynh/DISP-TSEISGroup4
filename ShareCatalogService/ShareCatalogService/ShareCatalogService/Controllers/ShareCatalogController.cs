@@ -5,43 +5,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using ShareCatalogService.Clients;
 using ShareCatalogService.Controllers.Requests;
 using ShareCatalogService.Data;
 using ShareCatalogService.Models;
+using AutoMapper;
+using ShareCatalogService.Controllers.Responses;
 
 namespace ShareCatalogService.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class ShareController: ControllerBase
+	public class ShareCatalogController: ControllerBase
 	{
 		private readonly ShareCatalogContext _context;
 		//private readonly ITobinTaxingClient _tobinTaxingClient;
 		private readonly TobinTaxingClient _tobinTaxingClient;
+		private IMapper _mapper;
 
-		public ShareController(ShareCatalogContext shareCatalogStore, TobinTaxingClient tobinTaxingClient)
+		public ShareCatalogController(ShareCatalogContext shareCatalogStore, TobinTaxingClient tobinTaxingClient)
 		{
+			var config = new MapperConfiguration(cfg => cfg.CreateMap<ShareCatalogRequest, ShareCatalog>());
+			_mapper = new Mapper(config);
 			_context = shareCatalogStore;
 			_tobinTaxingClient = tobinTaxingClient;
 		}
 
-		// GET: api/Share
-		[HttpGet]
-		public async Task<ActionResult<ICollection<ShareCatalog>>> GetShares()
+		// GET: api/ShareCatalog
+		[HttpGet("getShares")]
+		public async Task<ActionResult<IReadOnlyCollection<ShareCatalog>>> GetShares()
 		{
-			return await _context.Shares.ToListAsync();
+			return await Task.FromResult(_context.Shares.ToList());
 		}
 
 
-		[HttpGet("getShareInfo/{id}")]
-		public async Task<ActionResult<ShareCatalog>> GetShare(string id)
+		[HttpGet("{id}")]
+		public async Task<ActionResult<ShareCatalog>> GetShare([FromRoute] string id)
 		{
 			var share = await _context.Shares.FindAsync(id);
 
-			if (share == null)
+			if(share == null)
 			{
 				return NotFound();
 			}
@@ -50,7 +56,7 @@ namespace ShareCatalogService.Controllers
 		}
 
 		//Get all for sale shares HttpGet call
-		[HttpGet("/forSale")]
+		[HttpGet("forSale")]
 		public async Task<ICollection<ShareCatalog>> GetSharesForSale()
 		{
 			return await _context.Shares
@@ -59,43 +65,51 @@ namespace ShareCatalogService.Controllers
 		}
 
 		// set share for Sale
-		[HttpPut("updateShareForSale/{id}")]
-		public async Task<IActionResult> UpdateShareForSale(string shareId)
+		[HttpPut("updateShareForSale/{shareId}")]
+		public async Task<IActionResult> UpdateShareForSale([FromRoute]string shareId)
 		{
-			var share = await GetShare(shareId);
+			var share = await _context.Shares.FindAsync(shareId);
 
 			try
 			{
 				var tobinTaxingRequest = new TobinTaxingRequest
 				{
-					shareId = share.Value.Id,
-					shareValue = share.Value.Value,
+					ShareId = share.Id,
+					ShareValue = share.Value,
 				};
 
-				var taxResponse = await _tobinTaxingClient.GetTaxForShare(tobinTaxingRequest);
-				share.Value.Tax = taxResponse.TaxValue;
-				share.Value.ForSale = true;
+				var taxResponse = await _tobinTaxingClient.CalculateTaxForShare(tobinTaxingRequest);
+				//var taxResponse = new TaxResponse
+				//{
+				//	ShareId = share.Id,
+				//	TaxValue = share.Value * 0.01
+				//};
+
+				share.Tax = (float)taxResponse.TaxValue;
+				share.ForSale = true;
 				await _context.SaveChangesAsync();
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine("Exception caught: ", e);
+				
 			}
 
 			return Ok();
 		}
 
 		//update owner HttpPut call
-		[HttpPut("/updateShareOwner")]
-		public async Task<IActionResult> UpdateShareOwner(string shareId, string buyerId)
+		[HttpPut("updateShareOwner")]
+		public async Task<IActionResult> UpdateShareOwner([FromBody] ShareRequest request)
 		{
+			// look up share with shareID
+			var share = await _context.Shares.FindAsync(request.ShareId);
+
 			try
 			{
-				// look up share with shareID
-				var shareResponse = await GetShare(shareId);
 				// set share.userId to buyerId
-				shareResponse.Value.userId = buyerId;
-				shareResponse.Value.ForSale = false;
+				share.UserId = request.UserId;
+				share.ForSale = false;
 
 				await _context.SaveChangesAsync();
 			}
