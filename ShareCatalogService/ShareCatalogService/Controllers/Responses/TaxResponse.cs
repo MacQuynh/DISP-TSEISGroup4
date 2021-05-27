@@ -9,7 +9,7 @@ namespace ShareCatalogService.Controllers.Responses
 	{
 		public string ShareId {get; set;}
 
-		public float TaxValue {get; set;}
+		public double TaxValue {get; set;}
 
 	}
 }

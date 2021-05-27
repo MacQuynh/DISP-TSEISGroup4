@@ -29,42 +29,65 @@ namespace ShareCatalogService.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OwnerId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<float>("Tax")
                         .HasColumnType("real");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Value")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId");
-
                     b.ToTable("Shares");
-                });
 
-            modelBuilder.Entity("ShareCatalogService.Models.User", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("User");
-                });
-
-            modelBuilder.Entity("ShareCatalogService.Models.ShareCatalog", b =>
-                {
-                    b.HasOne("ShareCatalogService.Models.User", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId");
-
-                    b.Navigation("Owner");
+                    b.HasData(
+                        new
+                        {
+                            Id = "123456",
+                            ForSale = false,
+                            Name = "AP. Møller",
+                            Tax = 0f,
+                            UserId = "Mads Mikkelsen",
+                            Value = 1000f
+                        },
+                        new
+                        {
+                            Id = "123457",
+                            ForSale = true,
+                            Name = "Carlsberg",
+                            Tax = 1f,
+                            UserId = "Mads Mikkelsen",
+                            Value = 100f
+                        },
+                        new
+                        {
+                            Id = "123357",
+                            ForSale = true,
+                            Name = "AP. Møller",
+                            Tax = 10f,
+                            UserId = "Randi",
+                            Value = 1000f
+                        },
+                        new
+                        {
+                            Id = "122257",
+                            ForSale = true,
+                            Name = "AP. Møller",
+                            Tax = 10f,
+                            UserId = "Trang",
+                            Value = 1000f
+                        },
+                        new
+                        {
+                            Id = "123227",
+                            ForSale = false,
+                            Name = "Carlsberg",
+                            Tax = 0f,
+                            UserId = "Trang",
+                            Value = 100f
+                        });
                 });
 #pragma warning restore 612, 618
         }

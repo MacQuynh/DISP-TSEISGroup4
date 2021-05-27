@@ -7,8 +7,8 @@ namespace ShareCatalogService.Controllers.Requests
 {
 	public class TobinTaxingRequest
 	{
-		public string shareId {get; set;}
+		public string ShareId {get; set;}
 
-		public float shareValue {get; set;}
+		public float ShareValue {get; set;}
 	}
 }

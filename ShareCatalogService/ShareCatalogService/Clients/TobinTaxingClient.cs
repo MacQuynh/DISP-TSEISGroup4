@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
@@ -21,20 +22,21 @@ namespace ShareCatalogService.Clients
 
 		public TobinTaxingClient(HttpClient client)
 		{
-			client.BaseAddress = new Uri("skriv til client"); // TODO update base address
-			client.DefaultRequestHeaders.Add("Accept", "application/json");
+			client.BaseAddress = new Uri("https://localhost:44387/api/TobinTaxing"); // TODO update base address
+			client.DefaultRequestHeaders.Add("Accept","application/json");
 			_client = client;
 		}
 
-		public async Task<TaxResponse> GetTaxForShare(TobinTaxingRequest request)
+		public async Task<TaxResponse> CalculateTaxForShare(TobinTaxingRequest request)
 		{
-			var httpContent = new StringContent(request.ToString());
+			var httpContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+			//var httpContent = JsonConvert.SerializeObject(request);
 
-			var responseString = await _client.GetStringAsync(_client.BaseAddress + "getTax/" + httpContent); // TODO: skriv korrekt url!
-			var responseItem = JsonConvert.DeserializeObject<TaxResponse>(responseString);
+			var response = await _client.PostAsync(_client.BaseAddress + "/calculateTax", httpContent); // TODO: skriv korrekt url!
+			string result = response.Content.ReadAsStringAsync().Result;
 
+			var responseItem = JsonConvert.DeserializeObject<TaxResponse>(result);
 			return responseItem;
-			
 		}
 
 	}
