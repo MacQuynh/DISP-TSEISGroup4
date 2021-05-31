@@ -68,11 +68,11 @@ namespace UserCatalogService.Controllers
                 return BadRequest();
             }
 
+            //_context.UserCatalog.Update(buyer.Capital);
+            //await _context.SaveChangesAsync();
+            //_context.Entry(buyer).State = EntityState.Modified;
             var buyerToUpdate = await _context.UserCatalog.FirstOrDefaultAsync(i => i.Id == id);
             if(await TryUpdateModelAsync<UserCatalog>(buyerToUpdate, "", c => c.Capital)) // Just add more here if needed.
-
-            _context.Entry(buyer).State = EntityState.Modified;
-
             try
             {
                 await _context.SaveChangesAsync();
