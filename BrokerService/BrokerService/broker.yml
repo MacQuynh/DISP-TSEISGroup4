@@ -1,30 +1,30 @@
 ﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: grp4transaction
+    name: grp4broker
     namespace: swtdisp-gr4
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: grp4transaction
-            type: transaction-service
+            app: grp4broker
+            type: broker-service
     template: 
         metadata: 
             labels: 
-                app: grp4transaction
-                type: transaction-service
+                app: grp4broker
+                type: broker-service
         spec: 
             containers: 
-            - name: grp4transaction
-              image: pinkrandi/transaction:11
+            - name: grp4broker
+              image: pinkrandi/broker:3
               ports:
               - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: grp4transaction-service
+    name: grp4broker-service
     namespace: swtdisp-gr4
 spec:
     type: LoadBalancer
@@ -33,5 +33,5 @@ spec:
       port: 8888
       targetPort: 80
     selector:
-      app: grp4transaction
-      type: transaction-service
+      app: grp4broker
+      type: broker-service

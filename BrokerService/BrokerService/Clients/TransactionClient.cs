@@ -14,7 +14,7 @@ namespace BrokerService.Clients
 
         public TransactionClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("Skriv sti til client"); //TODO: update base address
+            client.BaseAddress = new Uri("https://grp4transaction-service:8888/api/transactions"); //TODO: update base address
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client = client;
         }
