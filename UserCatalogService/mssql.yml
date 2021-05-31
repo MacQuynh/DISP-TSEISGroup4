@@ -1,0 +1,38 @@
+﻿apiVersion: v1
+kind: Pod
+metadata: 
+    name: mssqlgr4-usercatalog-service
+    namespace: swtdisp-gr4
+    labels: 
+      app: mssqlgr4
+      type: database
+spec:
+    containers:
+    - image: mcr.microsoft.com/mssql/server:2019-latest
+      name: mssqlgr4-usercatalog-service
+      ports:
+      - containerPort: 1433
+        protocol: TCP
+      env:
+      - name: ACCEPT_EULA
+        value: "Y"
+      - name: SA_PASSWORD
+        value: "F21SWTDISP"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata: 
+    name: mssqlgr4-usercatalog-service
+    namespace: swtdisp-gr4
+spec:
+    type: LoadBalancer
+    ports:
+    - targetPort: 1433
+      port: 30336
+      nodePort: 30336
+      protocol: TCP
+    selector: 
+      app: mssqlgr4
+      type: database

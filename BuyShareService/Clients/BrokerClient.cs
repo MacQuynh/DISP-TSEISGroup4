@@ -15,7 +15,7 @@ namespace BuyShareService.Clients
 
         public BrokerClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("Update the path later"); //TODO: Update Path
+            client.BaseAddress = new Uri("http://grp4broker-service:8888/api/broker"); //TODO: Update Path
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client = client;
         }
@@ -35,6 +35,14 @@ namespace BuyShareService.Clients
             var reponseToFrontned = JsonConvert.DeserializeObject<BrokerRequest>(responseString.ToString());
 
             return reponseToFrontned;
+        }
+
+        public async Task<string> brokerTesting()
+        {
+            var requestString = await _client.GetAsync(_client.BaseAddress);
+            var requestToBroker = JsonConvert.DeserializeObject<string>(requestString.ToString());
+
+            return requestToBroker;
         }
     }
 }
