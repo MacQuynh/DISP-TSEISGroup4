@@ -14,13 +14,21 @@ namespace BuyShareService.Properties
     public class BuyerController : Controller
     {
         private readonly BrokerClient _brokerClient;
-        
+
         public BuyerController(BrokerClient brokerClient)
         {
             _brokerClient = brokerClient;
         }
 
-        [HttpPost("/buyShare")]
+        [HttpGet("buy")]
+        public async Task<string> GetBroker()
+        {
+            
+            var brokerResponse = await _brokerClient.brokerTesting();
+            return brokerResponse;
+        }
+
+        [HttpPost("buyShare")]
         public async Task<ActionResult<BrokerRequest>> BuyShareRequester (string buyerId, string shareId) 
         {
 
