@@ -17,7 +17,7 @@ spec:
         spec:
             containers:
             - name: sharecatalog
-              image: mbm92/shareservice:v7
+              image: mbm92/shareservice:v8
               ports:
               - containerPort: 80
 ---
@@ -27,7 +27,7 @@ metadata:
     name: grp4-sharecatalog-service
     namespace: swtdisp-gr4
 spec:
-    type: LoadBalancer
+    type: ClusterIP
     ports:
     - protocol: TCP
       port: 8888

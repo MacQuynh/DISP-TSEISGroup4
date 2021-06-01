@@ -33,12 +33,7 @@ namespace ShareCatalogService
 
 			services.AddDbContext<ShareCatalogContext>(option =>
 				option.UseSqlServer(Configuration.GetConnectionString("ShareCatalogContextSQLServerKubernetesConnection")));
-
-			//services.AddHttpClient<TobinTaxingClient>(client =>
-			//{
-			//	client.BaseAddress = new Uri("https://localhost:5001/api/TobinTaxing");
-			//	client.DefaultRequestHeaders.Add("Accept", "application/json");
-			//});
+				//option.UseSqlServer(Configuration.GetConnectionString("ShareCatalogContext")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

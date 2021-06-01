@@ -27,6 +27,7 @@ namespace TobinTaxingService.Controllers
 		[HttpPost("calculateTax")]
 		public ActionResult<TaxResponse> CalculateTax([FromBody] TaxRequest request)
 		{
+			Console.WriteLine(request.ShareId);
 
 			TaxResponse taxResponse = new TaxResponse
 			{

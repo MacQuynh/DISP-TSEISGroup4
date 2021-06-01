@@ -1,19 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 using ShareCatalogService.Clients;
 using ShareCatalogService.Controllers.Requests;
 using ShareCatalogService.Data;
 using ShareCatalogService.Models;
 using AutoMapper;
-using ShareCatalogService.Controllers.Responses;
 
 namespace ShareCatalogService.Controllers
 {
@@ -66,7 +61,7 @@ namespace ShareCatalogService.Controllers
 
 		// set share for Sale
 		[HttpPut("updateShareForSale/{shareId}")]
-		public async Task<IActionResult> UpdateShareForSale([FromRoute]string shareId)
+		public async Task<IActionResult> UpdateShareForSale(string shareId)
 		{
 			var share = await _context.Shares.FindAsync(shareId);
 
