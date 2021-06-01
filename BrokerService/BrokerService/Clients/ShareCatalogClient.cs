@@ -17,14 +17,14 @@ namespace BrokerService.Clients
 
         public ShareCatalogClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://grp4-sharecatalog-service:8888/api/sharecatalog"); //TODO: update base address
+            client.BaseAddress = new Uri("https://grp4-sharecatalog-service:8888/api/sharecatalog"); 
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client = client;
         }
 
         public async Task<ActionResult<ShareCatalogResponse>> GetShareInformation(string shareId)
         {
-            var responseString = await _client.GetAsync(_client.BaseAddress + "GetShare/" + shareId); //TODO: skriv korrekt url!
+            var responseString = await _client.GetAsync(_client.BaseAddress + shareId); 
             var share = JsonConvert.DeserializeObject<ShareCatalogResponse>(responseString.ToString());
 
             return share;
@@ -33,7 +33,7 @@ namespace BrokerService.Clients
         public async Task<ActionResult<ShareCatalogResponse>> SetShareForSale(ShareCatalogRequest request)
         {
             var httpContent = new StringContent(JsonConvert.SerializeObject(request));
-            var responseString = await _client.PostAsync(_client.BaseAddress + "updateShareForSale/{shareId}", httpContent); //TODO: skriv korrekt url!
+            var responseString = await _client.PostAsync(_client.BaseAddress + "updateShareForSale/" + request.ShareId, httpContent); 
             var share = JsonConvert.DeserializeObject<ShareCatalogResponse>(responseString.ToString());
 
             return share;

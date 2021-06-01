@@ -30,7 +30,7 @@ namespace BrokerService.Controllers
             return Ok("You have now hit the Broker Service!");
         }
 
-        [HttpPost("/buyShare")]
+        [HttpPost("buyShare")]
         public async Task<ActionResult<StatusCodeResult>> BuyShareRequest([FromBody] BuyShareRequest request)
         {
             try
