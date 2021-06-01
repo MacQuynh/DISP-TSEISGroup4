@@ -24,10 +24,10 @@ namespace BrokerService.Controllers
         }
 
         [HttpGet]
-        public async Task<string> Ping()
+        public async Task<ActionResult<string>> Ping()
         {
             Console.WriteLine("You have now hit the Broker Service!");
-            return "You have now hit the Broker Service!";
+            return Ok("You have now hit the Broker Service!");
         }
 
         [HttpPost("/buyShare")]

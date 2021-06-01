@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace BuyShareService.Properties
+namespace BuyShareService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,9 +22,8 @@ namespace BuyShareService.Properties
         }
 
         [HttpGet("buy")]
-        public async Task<string> GetBroker()
+        public async Task<ActionResult<string>> GetBroker()
         {
-            
             var brokerResponse = await _brokerClient.brokerTesting();
             return brokerResponse;
         }
