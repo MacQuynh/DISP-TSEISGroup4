@@ -27,9 +27,13 @@ namespace TransactionService
 
             services.AddControllers();
 
-            services.AddDbContext<TransactionContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("TransactionDbConnection")));
+            //localDb:
+            //services.AddDbContext<TransactionContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("TransactionDbConnection")));
 
+            // using SQLServer to kubenetes
+            services.AddDbContext<TransactionContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("TransactionSQLServerKubernetesConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

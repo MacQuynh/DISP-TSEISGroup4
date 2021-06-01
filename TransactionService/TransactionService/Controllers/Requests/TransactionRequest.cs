@@ -9,7 +9,6 @@ namespace TransactionService.Controllers.Requests
     {
         public string BuyerId { get; set; }
         public string SellerId { get; set; }
-        public DateTime TimeOfTransaction { get; set; }
         public string ShareId { get; set; }
         public double Tax { get; set; }
         public double ShareValue { get; set; }

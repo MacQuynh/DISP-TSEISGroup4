@@ -23,14 +23,21 @@ namespace BrokerService.Controllers
             _transactionClient = transactionClient;
         }
 
-        [HttpPost("/buyShare")]
-        public async Task<ActionResult<StatusCodeResult>> BuyShareRequest(string shareId, string buyerId)
+        [HttpGet]
+        public async Task<ActionResult<string>> Ping()
+        {
+            Console.WriteLine("You have now hit the Broker Service!");
+            return Ok("You have now hit the Broker Service!");
+        }
+
+        [HttpPost("buyShare")]
+        public async Task<ActionResult<StatusCodeResult>> BuyShareRequest([FromBody] BuyShareRequest request)
         {
             try
             {
                 // look up share(s) with Id
                 //response: share object
-                var shareResponse = await _shareCatalogClient.GetShareInformation(shareId);
+                var shareResponse = await _shareCatalogClient.GetShareInformation(request.ShareId);
                 if (!shareResponse.Value.forSale)
                 {
                     throw new Exception("The share is not for sale!");
@@ -40,9 +47,9 @@ namespace BrokerService.Controllers
                 //ok respone
                 var transactionRequest = new TransactionRequest
                 {
-                    BuyerId = buyerId,
+                    BuyerId = request.BuyerId,
                     SellerId = shareResponse.Value.Owner.Id,
-                    ShareId = shareId,
+                    ShareId = request.ShareId,
                     ShareValue = shareResponse.Value.Value,
                     Tax = shareResponse.Value.Tax,
                     Price = shareResponse.Value.Value + shareResponse.Value.Tax
@@ -61,13 +68,13 @@ namespace BrokerService.Controllers
         }
 
         [HttpPost("/sellShare")]
-        public async Task<ActionResult<ShareCatalogResponse>> SellShareRequest(string shareId, string sellerId)
+        public async Task<ActionResult<ShareCatalogResponse>> SellShareRequest([FromBody] SellShareRequest request)
         {
-            var request = new ShareCatalogRequest {SellerId = sellerId, ShareId = shareId};
+            var setShareForSaleRequest = new ShareCatalogRequest {SellerId = request.SellerId, ShareId = request.ShareId};
             ActionResult<ShareCatalogResponse> response = null;
             try
             {
-                response = await _shareCatalogClient.SetShareForSale(request);
+                response = await _shareCatalogClient.SetShareForSale(setShareForSaleRequest);
             }
             catch (Exception e)
             {
