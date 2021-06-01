@@ -22,7 +22,8 @@ namespace ShareCatalogService.Clients
 
 		public TobinTaxingClient(HttpClient client)
 		{
-			client.BaseAddress = new Uri("https://localhost:44387/api/TobinTaxing"); // TODO update base address
+			//client.BaseAddress = new Uri("https://localhost:44387/api/TobinTaxing"); // TODO update base address
+			client.BaseAddress = new Uri("https://grp4-tobingtaxing-service:8888/api/TobinTaxing");
 			client.DefaultRequestHeaders.Add("Accept","application/json");
 			_client = client;
 		}
@@ -32,7 +33,7 @@ namespace ShareCatalogService.Clients
 			var httpContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
 			//var httpContent = JsonConvert.SerializeObject(request);
 
-			var response = await _client.PostAsync(_client.BaseAddress + "/calculateTax", httpContent); // TODO: skriv korrekt url!
+			var response = await _client.PostAsync(_client.BaseAddress + "/calculateTax", httpContent);
 			string result = response.Content.ReadAsStringAsync().Result;
 
 			var responseItem = JsonConvert.DeserializeObject<TaxResponse>(result);

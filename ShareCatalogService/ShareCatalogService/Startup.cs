@@ -32,7 +32,7 @@ namespace ShareCatalogService
 			services.AddControllers();
 
 			services.AddDbContext<ShareCatalogContext>(option =>
-				option.UseSqlServer(Configuration.GetConnectionString("ShareCatalogContext")));
+				option.UseSqlServer(Configuration.GetConnectionString("ShareCatalogContextSQLServerKubernetesConnection")));
 
 			//services.AddHttpClient<TobinTaxingClient>(client =>
 			//{
