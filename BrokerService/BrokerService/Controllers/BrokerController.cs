@@ -67,14 +67,13 @@ namespace BrokerService.Controllers
             return Ok();
         }
 
-        [HttpPost("/sellShare")]
-        public async Task<ActionResult<ShareCatalogResponse>> SellShareRequest([FromBody] SellShareRequest request)
+        [HttpPost("sellShare/{shareId}")]
+        public async Task<ActionResult<ShareCatalogResponse>> SellShareRequest([FromRoute] string shareId)
         {
-            var setShareForSaleRequest = new ShareCatalogRequest {SellerId = request.SellerId, ShareId = request.ShareId};
             ActionResult<ShareCatalogResponse> response = null;
             try
             {
-                response = await _shareCatalogClient.SetShareForSale(setShareForSaleRequest);
+                response = await _shareCatalogClient.SetShareForSale(shareId);
             }
             catch (Exception e)
             {
