@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,21 +9,20 @@ using Newtonsoft.Json;
 
 namespace BrokerService.Clients
 {
-    public class TransactionClient
+    public class SellShareClient
     {
-        public HttpClient _client;
+        private readonly HttpClient _client;
 
-        public TransactionClient(HttpClient client)
+        public SellShareClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://grp4transaction-service:8888/api/transactions"); 
+            client.BaseAddress = new Uri("https://grp4broker-service:8888/api/seller"); 
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client = client;
         }
-
-        public async Task MakeTransaction(TransactionRequest request)
+        public async Task TellSellerShareIsSold(ShareIsSoldRequest request)
         {
             var httpContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
-            var response = await _client.PostAsync(_client.BaseAddress, httpContent); 
+            var response = await _client.PostAsync(_client.BaseAddress + "/shareSold", httpContent);
         }
     }
 }

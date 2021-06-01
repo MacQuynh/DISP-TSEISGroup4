@@ -21,6 +21,13 @@ namespace UserCatalogService.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        public async Task<IReadOnlyCollection<UserCatalog>> GetUsers()
+        {
+            var users = await Task.FromResult(_context.UserCatalog.ToList());
+            return users;
+        }
+
         [HttpGet("validatebuyer/{id}")]
         public async Task<ActionResult<UserCatalog>> GetValidateBuyer([FromRoute]string id)
         {

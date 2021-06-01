@@ -17,24 +17,24 @@ namespace BrokerService.Clients
 
         public ShareCatalogClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://grp4-sharecatalog-service:8888/api/sharecatalog"); 
+            client.BaseAddress = new Uri("http://grp4-sharecatalog-service:8888/api/ShareCatalog"); 
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client = client;
         }
 
         public async Task<ActionResult<ShareCatalogResponse>> GetShareInformation(string shareId)
         {
-            var responseString = await _client.GetAsync(_client.BaseAddress + shareId); 
-            var share = JsonConvert.DeserializeObject<ShareCatalogResponse>(responseString.ToString());
+            var responseString = await _client.GetAsync(_client.BaseAddress + "/" + shareId);
+            var result = responseString.Content.ReadAsStringAsync();
+            var share = JsonConvert.DeserializeObject<ShareCatalogResponse>(result.Result);
 
             return share;
         }
 
-        public async Task<ActionResult<ShareCatalogResponse>> SetShareForSale(ShareCatalogRequest request)
+        public async Task<ActionResult<string>> SetShareForSale(string shareId)
         {
-            var httpContent = new StringContent(JsonConvert.SerializeObject(request));
-            var responseString = await _client.PostAsync(_client.BaseAddress + "updateShareForSale/" + request.ShareId, httpContent); 
-            var share = JsonConvert.DeserializeObject<ShareCatalogResponse>(responseString.ToString());
+            var responseString = await _client.PutAsync(_client.BaseAddress + "/updateShareForSale/" + shareId, null); 
+            var share = responseString.ToString();
 
             return share;
         }

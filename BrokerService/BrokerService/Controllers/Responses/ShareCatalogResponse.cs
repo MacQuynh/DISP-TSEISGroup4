@@ -10,10 +10,10 @@ namespace BrokerService.Controllers.Responses
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public Owner Owner { get; set; }
+        public string UserId { get; set; }
         public double Value { get; set; }
         public int Tax { get; set; }
-        public bool forSale { get; set; }
+        public bool ForSale { get; set; }
     }
 
     public class Owner
