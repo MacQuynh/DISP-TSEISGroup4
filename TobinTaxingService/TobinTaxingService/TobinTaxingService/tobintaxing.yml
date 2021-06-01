@@ -17,7 +17,7 @@ spec:
         spec:
             containers:
             - name: tobintaxing
-              image: mbm92/tobintaxing:v1
+              image: mbm92/tobintaxing:v3
               ports:
               - containerPort: 80
 ---

@@ -23,7 +23,7 @@ namespace ShareCatalogService.Clients
 		public TobinTaxingClient(HttpClient client)
 		{
 			//client.BaseAddress = new Uri("https://localhost:44387/api/TobinTaxing"); // TODO update base address
-			client.BaseAddress = new Uri("https://grp4-tobingtaxing-service:8888/api/TobinTaxing");
+			client.BaseAddress = new Uri("http://grp4-tobingtaxing-service:8888/api/TobinTaxing");
 			client.DefaultRequestHeaders.Add("Accept","application/json");
 			_client = client;
 		}

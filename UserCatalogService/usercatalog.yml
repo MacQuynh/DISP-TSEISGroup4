@@ -1,38 +1,44 @@
-﻿apiVersion: v1
-kind: Pod
-metadata: 
-    name: mssqlgr4-usercatalog
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: grp4usercatalog-service
     namespace: swtdisp-gr4
-    labels: 
-      app: mssqlgr4
-      type: database
 spec:
-    containers:
-    - image: mcr.microsoft.com/mssql/server:2019-latest
-      name: mssqlgr4-usercatalog
-      ports:
-      - containerPort: 1433
-        protocol: TCP
-      env:
-      - name: ACCEPT_EULA
-        value: "Y"
-      - name: SA_PASSWORD
-        value: "F21SWTDISP"
-
+    replicas: 1
+    selector: 
+        matchLabels: 
+            app: buyservice
+            type: backend-microservice
+    template: 
+        metadata: 
+            labels: 
+                app: buyservice
+                type: backend-microservice
+        spec: 
+            containers: 
+            - name: usercatalog-service
+              image: macattck/usercatalog:v4
+              resources:
+                limits:
+                    cpu: 200m
+                    memory: 128Mi
+                requests:
+                    cpu: 50m
+                    memory: 64Mi
+              ports:
+              - containerPort: 80
 ---
-
 apiVersion: v1
 kind: Service
-metadata: 
-    name: mssqlgr4-usercatalog
+metadata:
+    name: grp4usercatalog-service
     namespace: swtdisp-gr4
 spec:
-    type: LoadBalancer
+    type: ClusterIP
     ports:
-    - targetPort: 1433
-      port: 30336
-      nodePort: 30336
-      protocol: TCP
-    selector: 
-      app: mssqlgr4
-      type: database
+    - protocol: TCP
+      port: 8888
+      targetPort: 80
+    selector:
+      app: usercatalog-service
+      type: backend-microservice 
