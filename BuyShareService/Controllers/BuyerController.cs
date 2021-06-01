@@ -21,6 +21,13 @@ namespace BuyShareService.Controllers
             _brokerClient = brokerClient;
         }
 
+        [HttpGet]
+        public async Task<ActionResult<string>> Ping()
+        {
+            Console.WriteLine("You have now hit the Buyer Service");
+            return Ok("You have now hit the Buyer Service");
+        }
+
         [HttpGet("buy")]
         public async Task<ActionResult<string>> GetBroker()
         {
