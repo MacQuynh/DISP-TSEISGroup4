@@ -79,11 +79,6 @@ namespace ShareCatalogService.Controllers
 				};
 
 				var taxResponse = await _tobinTaxingClient.CalculateTaxForShare(tobinTaxingRequest);
-				//var taxResponse = new TaxResponse
-				//{
-				//	ShareId = share.Id,
-				//	TaxValue = share.Value * 0.01
-				//};
 
 				share.Tax = (float)taxResponse.TaxValue;
 				share.ForSale = true;
