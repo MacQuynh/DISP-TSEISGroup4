@@ -26,9 +26,11 @@ namespace SellShareService.Controllers
             return Ok("You have now hit the Seller Service");
         }
 
-        [HttpPost("validateSeller")]
-        public async Task<ActionResult> validateSeller([FromBody] UserCatalogRequest request)
+
+        [HttpPost]
+        public async Task<ActionResult<string>> SellShareRequestToBroker([FromBody] UserCatalogRequest request)
         {
+            ActionResult<string> response = "";
             try
             {
                 var validateSellerRequest = new UserCatalogRequest
@@ -38,29 +40,15 @@ namespace SellShareService.Controllers
                 };
 
                 await _userCatalogClient.ValidateSeller(validateSellerRequest);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Exception: ", e);
-            }
 
-            return Ok();
-        }
-
-        [HttpPost("{shareId}")]
-        public async Task<ActionResult<string>> SellShareRequestToBroker([FromRoute] string shareId)
-        {
-            ActionResult<string> request = "";
-            try
-            {
-                request = await _brokerClient.brokerRequest(shareId);
+                response = await _brokerClient.brokerRequest(request.ShareId);
 
             }
             catch (Exception e)
             {
                 throw new Exception("Exception: ", e);
             }
-            return Ok(request);
+            return Ok(response);
 
 
         }

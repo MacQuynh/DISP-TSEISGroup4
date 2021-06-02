@@ -36,10 +36,10 @@ namespace BuyShareService.Controllers
         }
 
         [HttpPost("buyShare")]
-        public async Task<ActionResult<BrokerRequest>> BuyShareRequester ([FromBody] BuyShareRequest request) 
+        public async Task<ActionResult<string>> BuyShareRequester ([FromBody] BuyShareRequest request) 
         {
 
-            // Making a request to broker: 
+            ActionResult<string> response = "";
             try
             {
 
@@ -49,28 +49,17 @@ namespace BuyShareService.Controllers
                     ShareId = request.ShareId
                 };
 
-                await _brokerClient.BuyingRequest(brokerRequest);
+                response = await _brokerClient.BuyingRequest(brokerRequest);
 
             }
             catch (Exception e)
             {
 
-                Console.WriteLine("Exception: ", e);
+                throw new Exception("Exception: ", e);
             }
 
-            var frontendRequest = new BrokerRequest { BuyerId = request.BuyerId, ShareId = request.ShareId };
-            ActionResult<BrokerRequest> response = null;
-            try
-            {
-                response = await _brokerClient.FrontendResponse(frontendRequest);
-            }
-            catch (Exception e)
-            {
 
-                Console.WriteLine("Exception caught: ", e); ;
-            }
-
-            return Ok(frontendRequest);
+            return Ok(response);
 
         }
     }
