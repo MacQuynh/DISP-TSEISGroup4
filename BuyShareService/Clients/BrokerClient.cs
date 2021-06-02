@@ -17,8 +17,8 @@ namespace BuyShareService.Clients
 
         public BrokerClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("http://localhost:44350/api/broker");
-            //client.BaseAddress = new Uri("http://grp4broker-service:8888/api/broker"); 
+            //client.BaseAddress = new Uri("http://localhost:44350/api/broker");
+            client.BaseAddress = new Uri("http://grp4broker-service:8888/api/broker"); 
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client = client;
         }
