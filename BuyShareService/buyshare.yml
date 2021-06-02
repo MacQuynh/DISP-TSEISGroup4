@@ -17,7 +17,7 @@ spec:
         spec: 
             containers: 
             - name: buyservice
-              image: macattck/buyservice:v12
+              image: macattck/buyservice:v15
               resources:
                 limits:
                     cpu: 200m
@@ -31,7 +31,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: buyshare-service
+    name: grp4buyshare-service
     namespace: swtdisp-gr4
 spec:
     type: ClusterIP

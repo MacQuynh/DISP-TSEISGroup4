@@ -16,7 +16,7 @@ namespace SellShareService.Clients
 
         public UserCatalogClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://localhost:44363/api/usercatalog"); 
+            client.BaseAddress = new Uri("http://grp4usercatalog-service:8888/api/usercatalog"); 
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client = client;
         }
