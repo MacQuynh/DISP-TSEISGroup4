@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UserCatalogService.Data;
 
 namespace UserCatalogService.Migrations
 {
     [DbContext(typeof(UserCatalogContext))]
-    partial class UserCatalogContextModelSnapshot : ModelSnapshot
+    [Migration("20210601195923_updateToListOfStrings")]
+    partial class updateToListOfStrings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,27 +45,6 @@ namespace UserCatalogService.Migrations
                             Capital = 100.09999999999999,
                             Name = "Ida Hansen",
                             ShareIds = "12224,12225"
-                        },
-                        new
-                        {
-                            Id = "1",
-                            Capital = 200.09999999999999,
-                            Name = "Trang",
-                            ShareIds = "12226,12227"
-                        },
-                        new
-                        {
-                            Id = "2",
-                            Capital = 300.10000000000002,
-                            Name = "Mads",
-                            ShareIds = "12228"
-                        },
-                        new
-                        {
-                            Id = "3",
-                            Capital = 400.10000000000002,
-                            Name = "Randi",
-                            ShareIds = "12229"
                         });
                 });
 #pragma warning restore 612, 618
