@@ -17,7 +17,7 @@ spec:
         spec: 
             containers: 
             - name: usercatalog
-              image: macattck/usercatalog:v8
+              image: macattck/usercatalog:v9
               resources:
                 limits:
                     cpu: 200m

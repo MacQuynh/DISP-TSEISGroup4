@@ -17,7 +17,7 @@ spec:
         spec: 
             containers: 
             - name: buyservice
-              image: macattck/buyservice:v15
+              image: macattck/buyservice:v16
               resources:
                 limits:
                     cpu: 200m
