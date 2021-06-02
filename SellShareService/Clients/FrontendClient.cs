@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace SellShareService.Clients
@@ -14,18 +15,15 @@ namespace SellShareService.Clients
         public HttpClient _client { get; }
         public FrontendClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://XX:8888/api/broker");
+            client.BaseAddress = new Uri("https://XX:8888/api/frontend"); // --Insert the correct url
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client = client;
         }
 
-        public async Task<ActionResult<FrontendResponse>> frontendResponse(FrontendResponse response)
+        public async Task frontendResponse(FrontendResponse response)
         {
-            var httpContent = new StringContent(JsonConvert.SerializeObject(response));
-            var responseString = await _client.PostAsync(_client.BaseAddress + "ResponseToFrontend", httpContent);
-            var reponseToFrontend = JsonConvert.DeserializeObject<FrontendResponse>(responseString.ToString());
-
-            return reponseToFrontend;
+            var httpContent = new StringContent(JsonConvert.SerializeObject(response), Encoding.UTF8, "application/json");
+            var reponseToFrontend = await _client.PostAsync(_client.BaseAddress + "/XX", httpContent);
         }
     }
 }

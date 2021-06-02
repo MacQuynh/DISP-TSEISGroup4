@@ -15,7 +15,7 @@ namespace BrokerService.Clients
 
         public SellShareClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://grp4broker-service:8888/api/seller"); 
+            client.BaseAddress = new Uri("https://localhost:44358/api/seller"); 
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client = client;
         }
