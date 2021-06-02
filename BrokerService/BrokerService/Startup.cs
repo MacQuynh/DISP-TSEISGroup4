@@ -29,7 +29,6 @@ namespace BrokerService
         {
             services.AddHttpClient<ShareCatalogClient>();
             services.AddHttpClient<TransactionClient>();
-            services.AddHttpClient<SellShareClient>();
             services.AddControllers();
             
         }

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using BrokerService.Clients;
 using BrokerService.Controllers.Requests;
-using BrokerService.Controllers.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BrokerService.Controllers
@@ -16,13 +12,11 @@ namespace BrokerService.Controllers
     {
         private readonly ShareCatalogClient _shareCatalogClient;
         private readonly TransactionClient _transactionClient;
-        private readonly SellShareClient _sellShareClient;
 
-        public BrokerController(ShareCatalogClient shareCatalogClient, TransactionClient transactionClient, SellShareClient sellShareClient)
+        public BrokerController(ShareCatalogClient shareCatalogClient, TransactionClient transactionClient)
         {
             _shareCatalogClient = shareCatalogClient;
             _transactionClient = transactionClient;
-            _sellShareClient = sellShareClient;
         }
 
         [HttpGet]
@@ -37,16 +31,12 @@ namespace BrokerService.Controllers
         {
             try
             {
-                // look up share(s) with Id
-                //response: share object
                 var shareResponse = await _shareCatalogClient.GetShareInformation(request.ShareId);
                 if (!shareResponse.Value.ForSale)
                 {
-                    throw new Exception("The share is not for sale!");
+                    NotFound("The share is not for sale!");
                 }
 
-                //make transaction
-                //ok respone
                 var transactionRequest = new TransactionRequest
                 {
                     BuyerId = request.BuyerId,
@@ -58,22 +48,11 @@ namespace BrokerService.Controllers
                 };
 
                 await _transactionClient.MakeTransaction(transactionRequest);
-
-                var soldShareRequest = new ShareIsSoldRequest
-                {
-                    ShareId = request.ShareId,
-                    BuyerId = request.BuyerId,
-                    SellerId = shareResponse.Value.UserId,
-                    Price = shareResponse.Value.Value + shareResponse.Value.Tax
-                };
-
-                await _sellShareClient.TellSellerShareIsSold(soldShareRequest);
-
-                return Ok();
             }
             catch (Exception e)
             {
                 Console.WriteLine("Exception caught: ", e);
+                throw new Exception("Exception caught: ", e);
             }
 
             return Ok();
@@ -89,6 +68,7 @@ namespace BrokerService.Controllers
             catch (Exception e)
             {
                 Console.WriteLine("Exception caught: ", e);
+                throw new Exception("Exception caught: ", e);
             }
 
             return Ok();

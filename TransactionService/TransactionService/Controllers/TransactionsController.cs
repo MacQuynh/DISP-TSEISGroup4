@@ -41,6 +41,8 @@ namespace TransactionService.Controllers
         [HttpPost]
         public async Task<ActionResult<Transaction>> TransactionOfShare([FromBody] TransactionRequest transactionRequest)
         {
+            Console.WriteLine("Transaction has started");
+
             var newId = Guid.NewGuid().ToString();
             var transaction = _mapper.Map<Transaction>(transactionRequest);
             transaction.Id = newId;
