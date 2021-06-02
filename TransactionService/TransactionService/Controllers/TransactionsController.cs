@@ -51,31 +51,32 @@ namespace TransactionService.Controllers
             var shareUpdateRequest = new UpdateShareCatalogRequest
             {
                 ShareId = transaction.ShareId,
-                NewOwnerId = transaction.BuyerId
+                UserId = transaction.BuyerId
             };
             var buyerUpdateRequest = new UpdateUserCatalogRequest
             {
-                UserId = transaction.BuyerId, ShareId = transaction.ShareId, SharePrice = transaction.Price
+                UserId = transaction.BuyerId, ShareId = transaction.ShareId, Price = transaction.Price
             };
             var sellerUpdateRequest = new UpdateUserCatalogRequest
             {
-                UserId = transaction.SellerId, ShareId = transaction.ShareId, SharePrice = transaction.Price
+                UserId = transaction.SellerId, ShareId = transaction.ShareId, Price = transaction.Price
             };
 
             try
             {
-                //send request to User Catalog to update buyer and seller
-                //--Buyer: update ownerships and capital
-                //--Seller: update ownerships and capital
-                await _userCatalogClient.SendUpdateForBuyerToUserCatalog(buyerUpdateRequest);
-               await _userCatalogClient.SendUpdateForSellerToUserCatalog(sellerUpdateRequest);
-               // send request to Share Catalog to update share
-               //--Update owner and for sale
-                await _shareCatalogClient.SendUpdateOwnerToShareCatalog(shareUpdateRequest);
+                var sellerResponse = await _userCatalogClient.UpdateSeller(sellerUpdateRequest);
+                var buyerResponse = await _userCatalogClient.UpdateBuyer(buyerUpdateRequest);
+                if (sellerResponse.Value.Contains("Not Found") || buyerResponse.Value.Contains("Not Found"))
+                {
+                    return NotFound("Seller or buyer not found");
+                }
+
+                await _shareCatalogClient.UpdateOwner(shareUpdateRequest);
             }
             catch (HttpRequestException e)
             {
                 Console.WriteLine("Exception caught: ", e);
+                throw new Exception("Exception caught: ", e);
             }
 
             return Ok(transaction);

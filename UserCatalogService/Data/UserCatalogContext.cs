@@ -18,28 +18,48 @@ namespace UserCatalogService.Data
 
         public DbSet<UserCatalog> UserCatalog { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelbBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelbBuilder.Entity<Share>().HasOne<UserCatalog>(q => q.UserCatalog)
+            base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<Share>().HasOne<UserCatalog>(q => q.UserCatalog)
             //    .WithMany(w => w.Shares)
             //    .HasForeignKey(y => y.UserCatalogId);
 
-            modelbBuilder.Entity<UserCatalog>().HasMany(
-                 u => u.Shares
-                 ).WithOne(s => s.UserCatalog);
+            //modelBuilder.Entity<UserCatalog>().HasMany(
+            //     u => u.Shares
+            //     ).WithOne(s => s.UserCatalog);
 
-            modelbBuilder.Entity<UserCatalog>().HasData(
+
+            modelBuilder.Entity<UserCatalog>().HasData(
                new UserCatalog
                {
                    Capital = 100.10,
                    Name = "Ida Hansen",
-                   Id = "20"
+                   Id = "20",
+                   ShareIds = "12224,12225"
+               },
+               new UserCatalog
+               {
+                   Capital = 200.10,
+                   Name = "Trang",
+                   Id = "1",
+                   ShareIds = "12226,12227"
+               },
+               new UserCatalog
+               {
+                   Capital = 300.10,
+                   Name = "Mads",
+                   Id = "2",
+                   ShareIds = "12228"
+               },
+               new UserCatalog
+               {
+                   Capital = 400.10,
+                   Name = "Randi",
+                   Id = "3",
+                   ShareIds = "12229"
                }
                );
-
-            modelbBuilder.Entity<Share>().HasData(
-                new Share { Id = "AAPL", UserCatalogId = "20" }
-                );
 
         }
 

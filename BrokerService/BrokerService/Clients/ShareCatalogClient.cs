@@ -31,12 +31,9 @@ namespace BrokerService.Clients
             return share;
         }
 
-        public async Task<ActionResult<string>> SetShareForSale(string shareId)
+        public async Task SetShareForSale(string shareId)
         {
-            var responseString = await _client.PutAsync(_client.BaseAddress + "/updateShareForSale/" + shareId, null); 
-            var share = responseString.ToString();
-
-            return share;
+            await _client.PutAsync(_client.BaseAddress + "/updateShareForSale/" + shareId, null); 
         }
     }
 }
