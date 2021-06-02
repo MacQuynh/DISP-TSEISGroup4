@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+    name: mssqlgr4sellshare
+    namespace: swtdisp-gr4
+    labels: 
+      app: mssqlgr4sellshare
+      type: database
+spec:
+    containers:
+    - image: mcr.microsoft.com/mssql/server:2019-latest
+      name: mssqlgr4sellshare
+      ports:
+      - containerPort: 1433
+        protocol: TCP
+      env:
+      - name: ACCEPT_EULA
+        value: "Y"
+      - name: SA_PASSWORD
+        value: "F21swtdisp!!"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata: 
+    name: mssqlgr4sellshare-service
+    namespace: swtdisp-gr4
+spec:
+    type: ClusterIP
+    ports:
+    - targetPort: 1433
+      port: 30337
+      protocol: TCP
+    selector: 
+      app: mssqlgr4
+      type: database   

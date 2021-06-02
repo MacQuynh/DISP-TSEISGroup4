@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SellShareService.Controllers.Request;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace SellShareService.Clients
 
         public UserCatalogClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://localhost:44350/api/broker"); // -- insert the correct url
+            client.BaseAddress = new Uri("https://localhost:44363/api/usercatalog"); 
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client = client;
         }

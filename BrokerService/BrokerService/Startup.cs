@@ -27,7 +27,6 @@ namespace BrokerService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpClient<SellShareClient>();
             services.AddHttpClient<ShareCatalogClient>();
             services.AddHttpClient<TransactionClient>();
             services.AddHttpClient<SellShareClient>();

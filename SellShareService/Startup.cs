@@ -27,7 +27,6 @@ namespace SellShareService
         {
             services.AddHttpClient<UserCatalogClient>();
             services.AddHttpClient<BrokerClient>();
-            services.AddHttpClient<FrontendClient>();
             services.AddControllers();
 
         }

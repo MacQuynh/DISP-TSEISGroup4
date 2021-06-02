@@ -12,13 +12,11 @@ namespace SellShareService.Controllers
     {
         private readonly UserCatalogClient _userCatalogClient;
         private readonly BrokerClient _brokerClient;
-        private readonly FrontendClient _frontendClient;
 
-        public SellerController(BrokerClient brokerClient, FrontendClient frontendClient, UserCatalogClient userCatalogClient)
+        public SellerController(BrokerClient brokerClient, UserCatalogClient userCatalogClient)
         {
             _userCatalogClient = userCatalogClient;
             _brokerClient = brokerClient;
-            _frontendClient = frontendClient;
         }
 
         [HttpGet]
@@ -28,7 +26,7 @@ namespace SellShareService.Controllers
             return Ok("You have now hit the Seller Service");
         }
 
-        [HttpGet("validateSeller")]
+        [HttpPost("validateSeller")]
         public async Task<ActionResult> validateSeller([FromBody] UserCatalogRequest request)
         {
             try
@@ -43,7 +41,7 @@ namespace SellShareService.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine("Exception: ", e);
+                throw new Exception("Exception: ", e);
             }
 
             return Ok();
@@ -60,36 +58,11 @@ namespace SellShareService.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine("Exception: ", e);
+                throw new Exception("Exception: ", e);
             }
             return Ok(request);
 
 
-        }
-
-        [HttpPost("shareSold")]
-        public async Task<ActionResult> sellerShareResponseToFrontend([FromBody] BrokerRequest response)
-        {
-            try
-            {
-                var sendingResponseToFrontend = new FrontendResponse
-                {
-                    ShareId = response.ShareId,
-                    SellerId = response.SellerId,
-                    BuyerId = response.BuyerId,
-                    Price = response.Price
-
-                };
-
-                await _frontendClient.frontendResponse(sendingResponseToFrontend);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: ", e);
-            }
-
-            return Ok();
         }
     }
 

@@ -48,7 +48,7 @@ namespace UserCatalogService.Controllers
 
         }
 
-        [HttpGet("validateseller")]
+        [HttpPost("validateseller")]
         public async Task<ActionResult<UserCatalog>> GetValidateSeller([FromBody] ValidateSellerRequest request)
         {
             var seller = await Task.FromResult(_context.UserCatalog

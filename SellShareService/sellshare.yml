@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: grp4usercatalog
+    name: grp4sellshare
     namespace: swtdisp-gr4
 spec:
     replicas: 1
     selector: 
         matchLabels: 
-            app: grp4usercatalog
-            type: usercatalog-service
+            app: grp4sellshare
+            type: sellshare-service
     template: 
         metadata: 
             labels: 
-                app: grp4usercatalog
-                type: usercatalog-service
+                app: grp4sellshare
+                type: sellshare-service
         spec: 
             containers: 
-            - name: usercatalog
-              image: macattck/usercatalog:v8
+            - name: sellshare
+              image: macattck/sellshare:v1
               resources:
                 limits:
                     cpu: 200m
@@ -31,7 +31,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: grp4usercatalog-service
+    name: grp4sellshare-service
     namespace: swtdisp-gr4
 spec:
     type: ClusterIP
@@ -40,5 +40,5 @@ spec:
       port: 8888
       targetPort: 80
     selector:
-      app: grp4usercatalog
-      type: usercatalog-service
+      app: grp4sellshare
+      type: sellshare-service
