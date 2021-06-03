@@ -14,7 +14,7 @@ namespace ShareExchange4YouFrontend.Clients
         private readonly HttpClient _client;
         public BuyShareClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://buyservice-service:8888/api/buyer");
+            client.BaseAddress = new Uri("http://grp4buyshare-service:8888/api/buyer");
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client = client;
         }

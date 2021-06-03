@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
-COPY ["ShareExchange4YouFrontend/ShareExchange4YouFrontend.csproj", "ShareExchange4YouFrontend/"]
-RUN dotnet restore "ShareExchange4YouFrontend/ShareExchange4YouFrontend.csproj"
+COPY ["ShareExchange4YouFrontend.csproj", ""]
+RUN dotnet restore "./ShareExchange4YouFrontend.csproj"
 COPY . .
-WORKDIR "/src/ShareExchange4YouFrontend"
+WORKDIR "/src/."
 RUN dotnet build "ShareExchange4YouFrontend.csproj" -c Release -o /app/build
 
 FROM build AS publish

@@ -81,8 +81,7 @@ namespace ShareCatalogService.Controllers
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine("Exception caught: ", e);
-				
+				throw new Exception("Exception caught: ", e);
 			}
 
 			return Ok();
@@ -97,7 +96,7 @@ namespace ShareCatalogService.Controllers
 
 			try
 			{
-				// set share.userId to buyerId
+				
 				share.UserId = request.UserId;
 				share.ForSale = false;
 
@@ -105,7 +104,7 @@ namespace ShareCatalogService.Controllers
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine("Exception caught: ", e);
+				throw new Exception("Exception caught: ",e);
 			}
 
 			return Ok();
