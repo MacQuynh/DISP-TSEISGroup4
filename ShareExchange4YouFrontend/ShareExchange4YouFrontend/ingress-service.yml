@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+    name: grp4-ingress
+    namespace: swtdisp-gr4
+    annotations:
+      ingress.kubernetes.io/add-base-url: "true"
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/rewrite-target: /$2
+      nginx.ingress.kubernetes.io/use-regex: 'true'
+      
+spec:
+    rules:
+    - host: grp4-ingress.frontend.dk
+      http:
+        paths:
+        - path: /GetShares(/|$)(.*)
+          backend:
+            serviceName: grp4-shareexchange4you-frontend-service
+            servicePort: 8888
+        - path: /GetUsers(/|$)(.*)
+          backend:
+            serviceName: grp4-shareexchange4you-frontend-service
+            servicePort: 8888
+        - path: /BuyShare(/|$)(.*)
+          backend:
+            serviceName: grp4-shareexchange4you-frontend-service
+            servicePort: 8888
+        - path: /SellShare(/|$)(.*)
+          backend:
+            serviceName: grp4-shareexchange4you-frontend-service
+            servicePort: 8888
+        - path: /GetSharesForsale(/|$)(.*)
+          backend:
+            serviceName: grp4-shareexchange4you-frontend-service
+            servicePort: 8888

@@ -10,13 +10,13 @@ namespace SellShareService.Controllers
     [ApiController]
     public class SellerController : ControllerBase
     {
+        private readonly UserCatalogClient _userCatalogClient;
         private readonly BrokerClient _brokerClient;
-        private readonly FrontendClient _frontendClient;
 
-        public SellerController(BrokerClient brokerClient, FrontendClient frontendClient)
+        public SellerController(BrokerClient brokerClient, UserCatalogClient userCatalogClient)
         {
+            _userCatalogClient = userCatalogClient;
             _brokerClient = brokerClient;
-            _frontendClient = frontendClient;
         }
 
         [HttpGet]
@@ -26,51 +26,31 @@ namespace SellShareService.Controllers
             return Ok("You have now hit the Seller Service");
         }
 
-        [HttpPost("{shareId}")]
-        public async Task<ActionResult<BrokerClient>> SellShareRequestToBroker([FromRoute]string shareId)
+
+        [HttpPost]
+        public async Task<ActionResult<string>> SellShareRequestToBroker([FromBody] UserCatalogRequest request)
         {
+            ActionResult<string> response = "";
             try
             {
-                await _brokerClient.brokerRequest(shareId);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: ", e);
-            }
-
-            return Ok();
-
-        }
-
-        [HttpPost("frontendResponse")]
-        public async Task<ActionResult<StatusCodeResult>> sellerShareResponseToFrontend([FromBody] BrokerRequest response)
-        {
-            try
-            {
-                //var brokerResponse = await _brokerClient.GetResponseFromBroker(response);
-
-                //if (brokerResponse == null)
-                //{
-                //    throw new Exception("The share is not for sale!");
-                //}
-
-                var sendingResponseToFrontend = new FrontendResponse
+                var validateSellerRequest = new UserCatalogRequest
                 {
-                    ShareId = response.ShareId,
-                    SellerId = response.SellerId,
-                    BuyerId = response.BuyerId,
-                    Price = response.Price
-
+                    SellerId = request.SellerId,
+                    ShareId = request.ShareId
                 };
 
-                await _frontendClient.frontendResponse(sendingResponseToFrontend);
+                await _userCatalogClient.ValidateSeller(validateSellerRequest);
+
+                response = await _brokerClient.brokerRequest(request.ShareId);
+
             }
             catch (Exception e)
             {
-                Console.WriteLine("Exception: ", e);
+                throw new Exception("Exception: ", e);
             }
+            return Ok(response);
 
-            return Ok();
+
         }
     }
 

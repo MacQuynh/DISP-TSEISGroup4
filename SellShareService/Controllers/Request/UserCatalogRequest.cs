@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace SellShareService.Controllers.Request
 {
-    public class FrontendResponse
+    public class UserCatalogRequest
     {
-        public string ShareId { get; set; }
-        public string BuyerId { get; set; }
         public string SellerId { get; set; }
-        public double Price { get; set; }
+        public string ShareId { get; set; }
     }
 }

@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: buyservice
+    name: grp4buyshare
     namespace: swtdisp-gr4
 spec:
     replicas: 1
     selector: 
         matchLabels: 
-            app: buyservice
-            type: backend-microservice
+            app: grp4buyshare
+            type: buyshare-service
     template: 
         metadata: 
             labels: 
-                app: buyservice
-                type: backend-microservice
+                app: grp4buyshare
+                type: buyshare-service
         spec: 
             containers: 
             - name: buyservice
-              image: macattck/buyservice:v8
+              image: macattck/buyservice:v17
               resources:
                 limits:
                     cpu: 200m
@@ -31,7 +31,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: buyservice-service
+    name: grp4buyshare-service
     namespace: swtdisp-gr4
 spec:
     type: ClusterIP
@@ -40,5 +40,5 @@ spec:
       port: 8888
       targetPort: 80
     selector:
-      app: buyservice
-      type: backend-microservice
+      app: grp4buyshare
+      type: buyshare-service

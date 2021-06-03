@@ -9,17 +9,21 @@ using ShareExchange4YouFrontend.Controllers.Responses;
 
 namespace ShareExchange4YouFrontend.Controllers
 {
+    [Route("api/[Controller]")]
+    [ApiController]
     public class ShareExchange4YouController : Controller
     {
         private readonly ShareCatalogClient _shareCatalogClient;
         private readonly BuyShareClient _buyShareClient;
         private readonly UserCatalogClient _userCatalogClient;
+        private readonly SellShareClient _sellShareClient;
 
-        public ShareExchange4YouController(ShareCatalogClient shareCatalogClient, BuyShareClient buyShareClient, UserCatalogClient userCatalogClient)
+        public ShareExchange4YouController(ShareCatalogClient shareCatalogClient, BuyShareClient buyShareClient, UserCatalogClient userCatalogClient, SellShareClient sellShareClient)
         {
             _shareCatalogClient = shareCatalogClient;
             _buyShareClient = buyShareClient;
             _userCatalogClient = userCatalogClient;
+            _sellShareClient = sellShareClient;
         }
 
         [HttpGet("GetShares")]
@@ -43,6 +47,19 @@ namespace ShareExchange4YouFrontend.Controllers
             return response;
         }
 
-        //TODO: make endpoint for sellShare
+        [HttpPost("SellShare")]
+        public async Task<ActionResult<SellShareResponse>> SellShare([FromBody] SellShareRequest request)
+        {
+	        var response = await _sellShareClient.SellShare(request);
+	        return response;
+        }
+
+        [HttpGet("GetSharesForsale")]
+        public async Task<IReadOnlyCollection<ShareResponse>> GetSharesForsale()
+        {
+	        var shares = await _shareCatalogClient.GetSharesForsale();
+	        return shares;
+        }
+
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace BuyShareService.Clients
@@ -16,27 +17,22 @@ namespace BuyShareService.Clients
 
         public BrokerClient(HttpClient client)
         {
-            //client.BaseAddress = new Uri("https://localhost:44350/api/broker"); 
-            client.BaseAddress = new Uri("https://grp4broker-service:8888/api/broker"); 
+            //client.BaseAddress = new Uri("http://localhost:44350/api/broker");
+            client.BaseAddress = new Uri("http://grp4broker-service:8888/api/broker"); 
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client = client;
         }
 
         //Init the transaction for buying
-        public async Task BuyingRequest(BrokerRequest request)
+        public async Task<ActionResult<string>> BuyingRequest(BrokerRequest request)
         {
-            var httpContent = new StringContent(JsonConvert.SerializeObject(request));
-            await _client.PostAsync(_client.BaseAddress + "BuyingOfShare/", httpContent);
+            var httpContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync(_client.BaseAddress + "/buyShare", httpContent);
+            var result = response.Content.ReadAsStringAsync().Result;
+
+            return result;
         }
 
-        public async Task<ActionResult<BrokerRequest>> FrontendResponse(BrokerRequest response)
-        {
-            var httpContent = new StringContent(JsonConvert.SerializeObject(response));
-            var responseString = await _client.PostAsync(_client.BaseAddress + "sendResponseToFrontend", httpContent);
-            var reponseToFrontend = JsonConvert.DeserializeObject<BrokerRequest>(responseString.ToString());
-
-            return reponseToFrontend;
-        }
 
         public async Task<ActionResult<string>> brokerTesting()
         {

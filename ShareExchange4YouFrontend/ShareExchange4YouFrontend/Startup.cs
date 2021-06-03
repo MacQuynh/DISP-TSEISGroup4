@@ -30,10 +30,11 @@ namespace ShareExchange4YouFrontend
             services.AddHttpClient<ShareCatalogClient>();
             services.AddHttpClient<BuyShareClient>();
             services.AddHttpClient<UserCatalogClient>();
+            services.AddHttpClient<SellShareClient>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ShareExchange4YouFrontend", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ShareExchange4YouFrontend", Version = "v1"});
             });
         }
 

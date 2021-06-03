@@ -33,32 +33,75 @@ namespace UserCatalogService.Data
             modelBuilder.Entity<UserCatalog>().HasData(
                new UserCatalog
                {
-                   Capital = 100.10,
-                   Name = "Ida Hansen",
-                   Id = "20",
-                   ShareIds = "12224,12225"
-               },
-               new UserCatalog
-               {
                    Capital = 200.10,
                    Name = "Trang",
                    Id = "1",
-                   ShareIds = "12226,12227"
+                   ShareIds = "123456,162535"
                },
                new UserCatalog
                {
                    Capital = 300.10,
                    Name = "Mads",
                    Id = "2",
-                   ShareIds = "12228"
+                   ShareIds = "123457,162536"
                },
                new UserCatalog
                {
                    Capital = 400.10,
                    Name = "Randi",
                    Id = "3",
-                   ShareIds = "12229"
+                   ShareIds = "123458,162537"
+               },
+               new UserCatalog
+               {
+                   Capital = 100.10,
+                   Name = "Alexander",
+                   Id = "4",
+                   ShareIds = "123459,615243"
+               },
+               new UserCatalog
+               {
+                   Capital = 50.10,
+                   Name = "Jonas",
+                   Id = "5",
+                   ShareIds = "123460,615244"
+               },
+               new UserCatalog
+               {
+                   Capital = 700.60,
+                   Name = "Thanh",
+                   Id = "6",
+                   ShareIds = "654321,615245"
+               },
+               new UserCatalog
+               {
+                   Capital = 1000.80,
+                   Name = "Nikolaj",
+                   Id = "7",
+                   ShareIds = "654322,615246"
+               }, 
+               new UserCatalog
+               {
+                   Capital = 109.80,
+                   Name = "Frank",
+                   Id = "8",
+                   ShareIds = "654323"
+               },
+               new UserCatalog
+               {
+                   Capital = 1650.77,
+                   Name = "Poul",
+                   Id = "9",
+                   ShareIds = "654324"
+               },
+               new UserCatalog
+               {
+                   Capital = 980.60,
+                   Name = "Jenny",
+                   Id = "10",
+                   ShareIds = "162534"
                }
+
                );
 
         }

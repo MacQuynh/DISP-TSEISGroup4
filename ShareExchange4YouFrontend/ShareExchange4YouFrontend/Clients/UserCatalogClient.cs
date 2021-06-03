@@ -12,7 +12,7 @@ namespace ShareExchange4YouFrontend.Clients
         private readonly HttpClient _client;
         public UserCatalogClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://grp4usercatalog-service:8888/api/userCatalog");
+            client.BaseAddress = new Uri("http://grp4usercatalog-service:8888/api/userCatalog");
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client = client;
         }

@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-    name: grp4-sharecatalog
+    name: grp4-shareexchange4you-frontend
     namespace: swtdisp-gr4
 spec: 
     replicas: 1
     selector: 
         matchLabels: 
-            app: grp4-sharecatalog
-            type: sharecatalog-service
+            app: grp4-shareexchange4you-frontend
+            type: frontend-service
     template: 
         metadata: 
             labels: 
-                app: grp4-sharecatalog
-                type: sharecatalog-service
+                app: grp4-shareexchange4you-frontend
+                type: frontend-service
         spec:
             containers:
-            - name: sharecatalog
-              image: mbm92/shareservice:v10
+            - name: grp4-shareexchange4youfrontend
+              image: mbm92/shareexchange-frontend:v11
               ports:
               - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: grp4-sharecatalog-service
+    name: grp4-shareexchange4you-frontend-service
     namespace: swtdisp-gr4
 spec:
     type: ClusterIP
@@ -33,5 +33,5 @@ spec:
       port: 8888
       targetPort: 80
     selector:
-      app: grp4-sharecatalog
-      type: sharecatalog-service
+      app: grp4-shareexchange4you-frontend
+      type: frontend-service
