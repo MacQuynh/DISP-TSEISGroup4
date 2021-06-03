@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TransactionService.Controllers.Requests
+namespace SellShareService.Controllers.Request
 {
-    public class UpdateShareCatalogRequest
+    public class UserCatalogRequest
     {
+        public string SellerId { get; set; }
         public string ShareId { get; set; }
-        public string UserId { get; set; }
     }
 }

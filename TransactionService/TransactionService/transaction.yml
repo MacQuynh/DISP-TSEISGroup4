@@ -17,7 +17,7 @@ spec:
         spec: 
             containers: 
             - name: grp4transaction
-              image: pinkrandi/transaction:12
+              image: pinkrandi/transaction:13
               ports:
               - containerPort: 80
 ---
@@ -27,7 +27,7 @@ metadata:
     name: grp4transaction-service
     namespace: swtdisp-gr4
 spec:
-    type: ClusterIP
+    type: LoadBalancer
     ports:
     - protocol: TCP
       port: 8888

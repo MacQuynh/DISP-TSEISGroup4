@@ -80,23 +80,18 @@ namespace BrokerService.Controllers
         }
 
         [HttpPost("sellShare/{shareId}")]
-        public async Task<ActionResult<string>> SellShareRequest([FromRoute] string shareId)
+        public async Task<IActionResult> SellShareRequest([FromRoute] string shareId)
         {
-            ActionResult<string> response = "";
             try
             {
-                response = await _shareCatalogClient.SetShareForSale(shareId);
-                if (response.Result == null)
-                {
-                    return NotFound("Share not found");
-                }
+                await _shareCatalogClient.SetShareForSale(shareId);
             }
             catch (Exception e)
             {
                 Console.WriteLine("Exception caught: ", e);
             }
 
-            return Ok(response);
+            return Ok();
         }
     }
 }

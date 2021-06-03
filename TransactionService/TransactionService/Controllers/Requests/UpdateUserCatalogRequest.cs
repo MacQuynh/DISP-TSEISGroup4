@@ -9,6 +9,6 @@ namespace TransactionService.Controllers.Requests
     {
         public string UserId { get; set; }
         public string ShareId { get; set; }
-        public double SharePrice { get; set; }
+        public double Price { get; set; }
     }
 }

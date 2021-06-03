@@ -15,24 +15,18 @@ namespace SellShareService.Clients
 
         public BrokerClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://grp4broker-service:8888/api/broker"); 
+            client.BaseAddress = new Uri("http://grp4broker-service:8888/api/broker"); 
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client = client;
         }
 
-        /*Insert the request to BrokerClient*/
-        public async Task<ActionResult<BrokerClient>> brokerRequest(string shareId)
+        public async Task<ActionResult<string>> brokerRequest(string shareId)
         {
-            var brokerRequest = await _client.PostAsync(_client.BaseAddress + "/"+ shareId, null);
-            var request = JsonConvert.DeserializeObject<BrokerClient>(brokerRequest.ToString());
-
+            var brokerRequest = await _client.PostAsync(_client.BaseAddress + "/sellShare/" + shareId, null);
+            var request = brokerRequest.ToString();
             return request;
 
         }
 
-        //internal Task GetResponseFromBroker(BrokerRequest response)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
